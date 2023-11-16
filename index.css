@@ -1,0 +1,26 @@
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+li {
+    border: solid 1px black;
+    margin: 1rem;
+}
+
+h1, h2 {
+    font-weight: bolder;
+    text-align: center;
+    border: solid 1px black;
+    margin: 20px;
+    padding: 20px;
+}
+
+.block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    text-align: center;
+    border: solid 1px black;
+}
