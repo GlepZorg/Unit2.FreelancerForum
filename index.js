@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const averageStartingPriceDisplay = document.getElementById('averageStartingPrice');
     const names = ['James', 'Noah', 'Oliver', 'Dave', 'Eve', 'Frank', 'Grace', 'Henry', 'Ivy', 'Jack'];
     const occupations = ['Dentist', 'Electrician', 'Chef', 'Designer', 'Photographer', 'Consultant', 'Marketer', 'Engineer', 'Artist', 'Nurse'];
-  
+    const maxFreelancers = 25;
     let freelancers = [
       { name: 'Alice',
         occupation: 'Writer', 
@@ -44,18 +44,24 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function updateAverageStartingPrice() {
       const total = freelancers.reduce((acc, freelancer) => acc + freelancer.startingPrice, 0);
-      const average = (total / freelancers.length).toFixed(2);
-      averageStartingPriceDisplay.textContent = `The average starting price is $${average}.`;
+      const average = (total / freelancers.length).toFixed(0);
+      averageStartingPriceDisplay.textContent = `The average starting price is $${average}`;
     }
   
     updateFreelancerList();
     updateAverageStartingPrice();
   
-    setInterval(() => {
-      const newFreelancer = createRandomFreelancer();
-      freelancers.push(newFreelancer);
-      updateFreelancerList();
-      updateAverageStartingPrice();
-    }, 3000); 
+    const intervalId = setInterval(() => {
+      if(freelancers.length < maxFreelancers) {
+        const newFreelancer = createRandomFreelancer();
+        freelancers.push(newFreelancer);
+        updateFreelancerList();
+        updateAverageStartingPrice();
+      } else {
+        clearInterval(intervalId);
+      }
+    }, 3000);
   });
+
+  
   
